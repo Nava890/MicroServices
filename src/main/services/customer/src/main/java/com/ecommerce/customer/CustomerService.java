@@ -1,6 +1,6 @@
 package com.ecommerce.customer;
 
-import com.ecommerce.customer.Exception.CustomerNotFoundException;
+import com.ecommerce.Exception.CustomerNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
@@ -53,5 +53,9 @@ public class CustomerService {
         return customerRepository.findById(customerId)
                 .map(customerMapper::fromCustomer)
                 .orElseThrow(()->new CustomerNotFoundException(String.format("There is no customer found for this customer id::%s",customerId)));
+    }
+
+    public void deleteById(String customerId) {
+        customerRepository.deleteById(customerId);
     }
 }

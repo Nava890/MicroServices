@@ -2,7 +2,6 @@ package com.ecommerce.customer;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +41,13 @@ public class CustomerController {
     public ResponseEntity<CustomerResponse> findById(
             @PathVariable("customer-id") String customerId){
         return ResponseEntity.ok(customerService.findById(customerId));
+    }
+
+    @DeleteMapping("/{customer-id}")
+    public ResponseEntity<Void> deleteById(
+            @PathVariable("customer-id") String customerId
+    ){
+        customerService.deleteById(customerId);
+        return ResponseEntity.accepted().build();
     }
 }
